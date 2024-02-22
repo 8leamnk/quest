@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { QuestInputs } from '../constants/types';
+import { Quest, QuestInputs } from '../constants/types';
 
 const MIN_PRIORITY: number = 1;
 const ERROR_EMPTY: string = '입력창 전부를 입력해 주세요.';
@@ -20,18 +20,20 @@ function useValidation() {
     if (Number(priority) < MIN_PRIORITY) {
       throw new Error(ERROR_PRIORITY_RANGE);
     }
+
+    return Number(priority);
   }, []);
 
   const validate = useCallback(
-    (inputs: QuestInputs) => {
+    (inputs: QuestInputs): Quest | null => {
       try {
         validateEmpty(inputs);
-        validateRange(inputs.priority);
+        const priority: number = validateRange(inputs.priority);
         setErrorMessage('');
-        return true;
+        return { ...inputs, priority };
       } catch (error: unknown) {
         if (error instanceof Error) setErrorMessage(error.message);
-        return false;
+        return null;
       }
     },
     [validateRange],
