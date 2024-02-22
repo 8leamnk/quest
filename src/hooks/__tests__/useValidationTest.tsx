@@ -4,10 +4,10 @@ import { QuestInputs } from '../../constants/types';
 
 describe('퀘스트 중요도 입력 유효성 검사 기능 테스트', () => {
   test.each([
-    [{ title: '', content: '', priority: '' }, false],
-    [{ title: '', content: '내용', priority: '1' }, false],
-    [{ title: '제목', content: '', priority: '1' }, false],
-    [{ title: '제목', content: '내용', priority: '' }, false],
+    [{ title: '', content: '', priority: '' }, null],
+    [{ title: '', content: '내용', priority: '1' }, null],
+    [{ title: '제목', content: '', priority: '1' }, null],
+    [{ title: '제목', content: '내용', priority: '' }, null],
   ])(
     '입력창에 입력하지 않은 것이 있으면 예외가 발생한다. ',
     (inputs: QuestInputs, output) => {
@@ -18,6 +18,7 @@ describe('퀘스트 중요도 입력 유효성 검사 기능 테스트', () => {
       const { result } = renderHook(useValidation);
       act(() => {
         const returnValue = result.current.validate(inputs);
+        // then
         expect(returnValue).toBe(output);
       });
 
@@ -27,10 +28,10 @@ describe('퀘스트 중요도 입력 유효성 검사 기능 테스트', () => {
   );
 
   test.each([
-    ['-1', false],
-    ['-2', false],
-    ['0', false],
-    ['-100', false],
+    ['-1', null],
+    ['-2', null],
+    ['0', null],
+    ['-100', null],
   ])('1 미만의 숫자를 입력하면 예외가 발생한다.', (priority, output) => {
     // given
     const ERROR_MESSAGE: string = '중요도는 1 이상의 숫자를 입력해 주세요.';
@@ -44,6 +45,7 @@ describe('퀘스트 중요도 입력 유효성 검사 기능 테스트', () => {
     const { result } = renderHook(useValidation);
     act(() => {
       const returnValue = result.current.validate(INPUTS);
+      // then
       expect(returnValue).toBe(output);
     });
 
@@ -51,7 +53,7 @@ describe('퀘스트 중요도 입력 유효성 검사 기능 테스트', () => {
     expect(result.current.errorMessage).toBe(ERROR_MESSAGE);
   });
 
-  test('입력창에 올바르게 입력하여 유효성 검사에 문제가 없으면 true를 반환한다.', () => {
+  test('입력창에 올바르게 입력하여 유효성 검사에 문제가 없으면 null를 반환한다.', () => {
     // given
     const ERROR_MESSAGE: string = '';
     const INPUT = {
@@ -59,13 +61,18 @@ describe('퀘스트 중요도 입력 유효성 검사 기능 테스트', () => {
       content: '내용',
       priority: '5',
     };
-    const OUTPUT = true;
+    const OUTPUT = {
+      title: '제목',
+      content: '내용',
+      priority: 5,
+    };
 
     // when
     const { result } = renderHook(useValidation);
     act(() => {
       const returnValue = result.current.validate(INPUT);
-      expect(returnValue).toBe(OUTPUT);
+      // then
+      expect(returnValue).toEqual(OUTPUT);
     });
 
     // then
