@@ -3,3 +3,9 @@ export interface Quest {
   content: string;
   priority: number;
 }
+
+export interface QuestInputs {
+  title: string;
+  content: string;
+  priority: string;
+}
