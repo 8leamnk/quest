@@ -68,7 +68,7 @@ function usePriorityQueue() {
   }, []);
 
   const enqueue = useCallback(
-    (element: Quest) => {
+    (element: Quest): void => {
       const queue = [...quests];
       queue.push(element);
       const newQueue = bubbleUp(queue);
@@ -77,7 +77,7 @@ function usePriorityQueue() {
     [quests],
   );
 
-  const dequeue = useCallback(() => {
+  const dequeue = useCallback((): Quest => {
     let newQueue = [...quests];
     const quest = newQueue[START_INDEX];
     const end = newQueue.pop();
