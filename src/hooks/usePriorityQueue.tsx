@@ -1,17 +1,12 @@
 import { useCallback, useState } from 'react';
-
-interface Quest {
-  title: string;
-  content: string;
-  priority: number;
-}
+import { QuestInputs } from '../constants/types';
 
 const START_INDEX: number = 0;
 
 function usePriorityQueue() {
-  const [quests, setQuests] = useState<Quest[]>([]);
+  const [quests, setQuests] = useState<QuestInputs[]>([]);
 
-  const bubbleUp = useCallback((queue: Array<Quest>) => {
+  const bubbleUp = useCallback((queue: Array<QuestInputs>) => {
     const newQueue = [...queue];
     let currentIndex = newQueue.length - 1;
     const element = newQueue[currentIndex];
@@ -30,7 +25,7 @@ function usePriorityQueue() {
     return newQueue;
   }, []);
 
-  const sinkDown = useCallback((queue: Array<Quest>) => {
+  const sinkDown = useCallback((queue: Array<QuestInputs>) => {
     const newQueue = [...queue];
     let currentIndex = START_INDEX;
     const element = newQueue[currentIndex];
@@ -39,8 +34,8 @@ function usePriorityQueue() {
     while (true) {
       const leftChildIdx: number = 2 * currentIndex + 1;
       const rightChildIdx: number = 2 * currentIndex + 2;
-      let leftChild: Quest | undefined;
-      let rightChild: Quest | undefined;
+      let leftChild: QuestInputs | undefined;
+      let rightChild: QuestInputs | undefined;
       let swap: number | null = null;
 
       if (leftChildIdx < length) {
@@ -73,7 +68,7 @@ function usePriorityQueue() {
   }, []);
 
   const enqueue = useCallback(
-    (element: Quest) => {
+    (element: QuestInputs) => {
       const queue = [...quests];
       queue.push(element);
       const newQueue = bubbleUp(queue);
