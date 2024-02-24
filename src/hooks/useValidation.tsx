@@ -6,9 +6,9 @@ const ERROR_EMPTY: string = '입력창 전부를 입력해 주세요.';
 const ERROR_PRIORITY_RANGE: string = '중요도는 1 이상의 숫자를 입력해 주세요.';
 
 function useValidation() {
-  const [errorMessage, setErrorMessage] = useState<string>('');
+  const [errorMsg, setErrorMsg] = useState<string>('');
 
-  const validateEmpty = useCallback((inputs: QuestInputs) => {
+  const validateEmpty = useCallback((inputs: QuestInputs): void => {
     Object.values(inputs).forEach((value) => {
       if (value.length === 0) {
         throw new Error(ERROR_EMPTY);
@@ -16,7 +16,7 @@ function useValidation() {
     });
   }, []);
 
-  const validateRange = useCallback((priority: string) => {
+  const validateRange = useCallback((priority: string): number => {
     if (Number(priority) < MIN_PRIORITY) {
       throw new Error(ERROR_PRIORITY_RANGE);
     }
@@ -29,17 +29,17 @@ function useValidation() {
       try {
         validateEmpty(inputs);
         const priority: number = validateRange(inputs.priority);
-        setErrorMessage('');
+        setErrorMsg('');
         return { ...inputs, priority };
       } catch (error: unknown) {
-        if (error instanceof Error) setErrorMessage(error.message);
+        if (error instanceof Error) setErrorMsg(error.message);
         return null;
       }
     },
     [validateRange],
   );
 
-  return { errorMessage, validate };
+  return { errorMsg, validate };
 }
 
 export default useValidation;

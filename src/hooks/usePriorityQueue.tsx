@@ -6,7 +6,7 @@ const START_INDEX: number = 0;
 function usePriorityQueue() {
   const [quests, setQuests] = useState<Quest[]>([]);
 
-  const bubbleUp = useCallback((queue: Array<Quest>) => {
+  const bubbleUp = useCallback((queue: Quest[]): Quest[] => {
     const newQueue = [...queue];
     let currentIndex = newQueue.length - 1;
     const element = newQueue[currentIndex];
@@ -25,7 +25,7 @@ function usePriorityQueue() {
     return newQueue;
   }, []);
 
-  const sinkDown = useCallback((queue: Array<Quest>) => {
+  const sinkDown = useCallback((queue: Quest[]): Quest[] => {
     const newQueue = [...queue];
     let currentIndex = START_INDEX;
     const element = newQueue[currentIndex];

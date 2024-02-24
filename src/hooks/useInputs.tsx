@@ -8,7 +8,7 @@ function useInputs() {
     priority: '',
   });
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target;
     setInputs((curState) => ({ ...curState, [name]: value }));
   };
