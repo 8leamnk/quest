@@ -1,9 +1,9 @@
 import { useCallback, useState } from 'react';
 import { Quest, QuestInputs } from '../constants/types';
 
-const MIN_PRIORITY: number = 1;
-const ERROR_EMPTY: string = '입력창 전부를 입력해 주세요.';
-const ERROR_PRIORITY_RANGE: string = '중요도는 1 이상의 숫자를 입력해 주세요.';
+const MIN_PRIORITY = 1;
+const ERROR_EMPTY = '입력창 전부를 입력해 주세요.';
+const ERROR_PRIORITY_RANGE = '중요도는 1 이상의 숫자를 입력해 주세요.';
 
 function useValidation() {
   const [errorMsg, setErrorMsg] = useState<string>('');
