@@ -1,10 +1,12 @@
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
+import { useRecoilState } from 'recoil';
 import { Quest } from '../constants/types';
+import { questState } from '../states/main.state';
 
-const START_INDEX: number = 0;
+const START_INDEX = 0;
 
 function usePriorityQueue() {
-  const [quests, setQuests] = useState<Quest[]>([]);
+  const [quests, setQuests] = useRecoilState<Quest[]>(questState);
 
   const bubbleUp = useCallback((queue: Quest[]): Quest[] => {
     const newQueue = [...queue];
@@ -31,6 +33,7 @@ function usePriorityQueue() {
     const element = newQueue[currentIndex];
     const { length } = newQueue;
 
+    // eslint-disable-next-line no-constant-condition
     while (true) {
       const leftChildIdx: number = 2 * currentIndex + 1;
       const rightChildIdx: number = 2 * currentIndex + 2;
@@ -68,11 +71,13 @@ function usePriorityQueue() {
   }, []);
 
   const enqueue = useCallback(
-    (element: Quest): void => {
+    (element: Quest): boolean => {
       const queue = [...quests];
       queue.push(element);
       const newQueue = bubbleUp(queue);
       setQuests(newQueue);
+
+      return true;
     },
     [quests],
   );
