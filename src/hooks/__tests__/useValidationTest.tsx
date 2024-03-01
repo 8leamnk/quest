@@ -12,7 +12,7 @@ describe('퀘스트 중요도 입력 유효성 검사 기능 테스트', () => {
     '입력창에 입력하지 않은 것이 있으면 예외가 발생한다. ',
     (inputs: QuestInputs, output) => {
       // given
-      const ERROR_MESSAGE: string = '입력창 전부를 입력해 주세요.';
+      const ERROR_MESSAGE = '입력창 전부를 입력해 주세요.';
 
       // when
       const { result } = renderHook(useValidation);
@@ -23,7 +23,7 @@ describe('퀘스트 중요도 입력 유효성 검사 기능 테스트', () => {
       });
 
       // then
-      expect(result.current.errorMessage).toBe(ERROR_MESSAGE);
+      expect(result.current.errorMsg).toBe(ERROR_MESSAGE);
     },
   );
 
@@ -34,7 +34,7 @@ describe('퀘스트 중요도 입력 유효성 검사 기능 테스트', () => {
     ['-100', null],
   ])('1 미만의 숫자를 입력하면 예외가 발생한다.', (priority, output) => {
     // given
-    const ERROR_MESSAGE: string = '중요도는 1 이상의 숫자를 입력해 주세요.';
+    const ERROR_MESSAGE = '중요도는 1 이상의 숫자를 입력해 주세요.';
     const INPUTS = {
       title: '제목',
       content: '내용',
@@ -50,12 +50,12 @@ describe('퀘스트 중요도 입력 유효성 검사 기능 테스트', () => {
     });
 
     // then
-    expect(result.current.errorMessage).toBe(ERROR_MESSAGE);
+    expect(result.current.errorMsg).toBe(ERROR_MESSAGE);
   });
 
   test('입력창에 올바르게 입력하여 유효성 검사에 문제가 없으면 null를 반환한다.', () => {
     // given
-    const ERROR_MESSAGE: string = '';
+    const ERROR_MESSAGE = '';
     const INPUT = {
       title: '제목',
       content: '내용',
@@ -76,6 +76,6 @@ describe('퀘스트 중요도 입력 유효성 검사 기능 테스트', () => {
     });
 
     // then
-    expect(result.current.errorMessage).toBe(ERROR_MESSAGE);
+    expect(result.current.errorMsg).toBe(ERROR_MESSAGE);
   });
 });
