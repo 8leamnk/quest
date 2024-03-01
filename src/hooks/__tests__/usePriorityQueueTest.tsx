@@ -1,11 +1,14 @@
 import { act, renderHook } from '@testing-library/react';
+import { RecoilRoot } from 'recoil';
 import { Quest } from '../../constants/types';
 import usePriorityQueue from '../usePriorityQueue';
 
 describe('우선 순위 큐 테스트', () => {
   test('아무것도 없는 상태에서 제거를 하면 undefined가 반환된다.', () => {
     // when
-    const { result } = renderHook(usePriorityQueue);
+    const { result } = renderHook(() => usePriorityQueue(), {
+      wrapper: ({ children }) => <RecoilRoot>{children}</RecoilRoot>,
+    });
     const element = result.current.dequeue();
 
     // then
@@ -31,7 +34,9 @@ describe('우선 순위 큐 테스트', () => {
     ];
 
     // when
-    const { result, rerender } = renderHook(usePriorityQueue);
+    const { result, rerender } = renderHook(() => usePriorityQueue(), {
+      wrapper: ({ children }) => <RecoilRoot>{children}</RecoilRoot>,
+    });
 
     INPUTS.forEach((input) => {
       act(() => {
