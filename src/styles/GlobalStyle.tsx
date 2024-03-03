@@ -17,6 +17,19 @@ const GlobalStyle = createGlobalStyle`
     user-select: none;
     -webkit-user-drag: none;
   }
+
+  h1, h2, h3, h4, h5, h6, p, ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    list-style-type: none;
+  }
+
+  a {
+    text-decoration: none;
+  }
 `;
 
 export default GlobalStyle;
