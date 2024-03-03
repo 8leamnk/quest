@@ -1,7 +1,7 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import Home from './Pages/Home';
-import QuestStart from './Pages/QuestStart';
-import NotFound from './Pages/NotFound';
+import Home from './Components/Pages/Home';
+import QuestStart from './Components/Pages/QuestStart';
+import NotFound from './Components/Pages/NotFound';
 import Theme from './styles/Theme';
 
 function App() {
