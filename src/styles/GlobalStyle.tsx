@@ -7,7 +7,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    background-color: #f0f6ff;
+    background-color: ${({ theme }) => theme.colors.blue001};
     font-size: ${({ theme }) => `${theme.fontSize.base}px`};
     font-stretch: normal;
     font-style: normal;
