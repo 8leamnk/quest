@@ -11,6 +11,7 @@ const GlobalStyle = createGlobalStyle`
     font-size: ${({ theme }) => `${theme.fontSize.base}px`};
     font-stretch: normal;
     font-style: normal;
+    color: ${({ theme }) => theme.colors.gray100};
     line-height: normal;
     box-sizing: border-box;
     user-select: none;

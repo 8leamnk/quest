@@ -19,6 +19,12 @@ const S = {
     user-select: text;
     border: none;
     outline: none;
+
+    &::placeholder,
+    &::-moz-placeholder,
+    &::-webkit-input-placeholder {
+      color: ${({ theme }) => `${theme.colors.gray001}`};
+    }
   `,
 };
 
