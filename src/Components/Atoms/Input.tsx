@@ -1,13 +1,6 @@
 /* eslint-disable no-unused-vars */
 import styled from 'styled-components';
-
-interface InputOptions {
-  type: string;
-  name: string;
-  value: string;
-  placeholder: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
+import { InputOptions } from '../../constants/types';
 
 const S = {
   Input: styled.input`
