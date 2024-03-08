@@ -1,7 +1,8 @@
+/* eslint-disable no-unused-vars */
 import styled from 'styled-components';
 
 interface ButtonOptions {
-  buttonText: string;
+  children: string;
   onClick: () => void;
 }
 
@@ -19,10 +20,10 @@ const S = {
   `,
 };
 
-function Button({ buttonText, onClick, ...rest }: ButtonOptions) {
+function Button({ children, onClick, ...rest }: ButtonOptions) {
   return (
     <S.Button onClick={onClick} {...rest}>
-      {buttonText}
+      {children}
     </S.Button>
   );
 }
