@@ -1,7 +1,12 @@
 import React from 'react';
+import QuestRegistration from '../Organisms/QuestRegistration';
 
 function Home() {
-  return <>Hello world!</>;
+  return (
+    <>
+      <QuestRegistration />
+    </>
+  );
 }
 
 export default React.memo(Home);
