@@ -17,11 +17,13 @@ function useValidation() {
   }, []);
 
   const validateRange = useCallback((priority: string): number => {
-    if (Number(priority) < MIN_PRIORITY) {
+    const level = Number(priority);
+
+    if (!level || level < MIN_PRIORITY) {
       throw new Error(ERROR_PRIORITY_RANGE);
     }
 
-    return Number(priority);
+    return level;
   }, []);
 
   const validate = useCallback(
