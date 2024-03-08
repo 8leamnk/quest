@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import { QuestInputs } from '../constants/types';
+import { useState } from 'react';
+import { changeEvent } from '../constants/types';
 
-function useInputs() {
-  const [inputs, setInputs] = useState<QuestInputs>({
-    title: '',
-    content: '',
-    priority: '',
-  });
+function useInputs<T>(initialInputs: T) {
+  const [inputs, setInputs] = useState<T>(initialInputs);
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const onChange = (e: changeEvent): void => {
     const { name, value } = e.target;
     setInputs((curState) => ({ ...curState, [name]: value }));
   };
 
-  return { inputs, onChange };
+  const onReset = (): void => {
+    setInputs((curState) => ({ ...curState, initialInputs }));
+  };
+
+  return { inputs, onChange, onReset };
 }
 
 export default useInputs;
