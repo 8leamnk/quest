@@ -1,5 +1,5 @@
 import { act, renderHook } from '@testing-library/react';
-import useValidation from '../useValidation';
+import useValidation from '../useQuestValidation';
 import { QuestInputs } from '../../constants/types';
 
 describe('퀘스트 중요도 입력 유효성 검사 기능 테스트', () => {
