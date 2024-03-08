@@ -21,7 +21,7 @@ function Registration({ inputs, buttonText, onChange, onSubmit }: Options) {
     return (
       <Form buttonText={buttonText} onSubmit={onSubmit}>
         {Object.entries(inputs).map(([key, value]) => (
-          <Label key={key} labelText={key}>
+          <Label key={key} labelText={LABELS[key]}>
             <Input
               type="text"
               name={key}
@@ -35,7 +35,7 @@ function Registration({ inputs, buttonText, onChange, onSubmit }: Options) {
     );
   }
 
-  return '';
+  return <></>;
 }
 
 export default Registration;

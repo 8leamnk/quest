@@ -7,15 +7,19 @@ const S = {
   Content: styled.span``,
 };
 
-function RegisteredData(inputsData: object[]) {
-  return inputsData.map((data: object, index) => {
-    Object.entries(data).map(([key, value]) => (
-      <S.Data key={`${key}-${index}`}>
-        <S.Title>{`${LABELS[key]}: `}</S.Title>
-        <S.Content>{value}</S.Content>
-      </S.Data>
-    ));
-  });
+function RegisteredData({ registeredData }: { registeredData: object[] }) {
+  return (
+    <>
+      {registeredData.map((data: object, index) => {
+        Object.entries(data).map(([key, value]) => (
+          <S.Data key={`${key}-${index}`}>
+            <S.Title>{`${LABELS[key]}: `}</S.Title>
+            <S.Content>{value}</S.Content>
+          </S.Data>
+        ));
+      })}
+    </>
+  );
 }
 
 export default RegisteredData;
