@@ -9,10 +9,9 @@ const S = {
   Label: styled.label`
     display: flex;
     align-items: center;
+    gap: 8px;
   `,
-  LabelText: styled.h2`
-    margin-right: 8px;
-  `,
+  LabelText: styled.span``,
 };
 
 function Label({ labelText, children, ...rest }: LabelOptions) {

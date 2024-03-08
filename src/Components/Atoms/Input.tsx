@@ -4,7 +4,7 @@ import { InputOptions } from '../../constants/types';
 
 const S = {
   Input: styled.input`
-    width: 100%;
+    flex: 1;
     height: 40px;
     padding: 10px 12px;
     border-radius: 4px;
@@ -12,6 +12,7 @@ const S = {
     user-select: text;
     border: none;
     outline: none;
+    box-sizing: border-box;
 
     &::placeholder,
     &::-moz-placeholder,

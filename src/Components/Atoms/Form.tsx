@@ -11,8 +11,14 @@ interface FormOptions {
 }
 
 const S = {
-  Form: styled.form``,
-  Submit: styled(Button)``,
+  Form: styled.form`
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  `,
+  Submit: styled(Button)`
+    flex: none;
+  `,
 };
 
 function Form({ children, buttonText, onSubmit }: FormOptions) {
