@@ -1,9 +1,10 @@
 /* eslint-disable no-unused-vars */
 import styled from 'styled-components';
+import { buttonEvent } from '../../constants/types';
 
 interface ButtonOptions {
   children: string;
-  onClick: () => void;
+  onClick: (e: buttonEvent) => void;
 }
 
 const S = {
