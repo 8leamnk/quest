@@ -1,5 +1,5 @@
 const COLORS = Object.freeze({
-  while: '#fff',
+  white: '#fff',
   gray001: '#bcbcbc',
   gray100: '#16111e',
   blue001: '#f0f6ff',

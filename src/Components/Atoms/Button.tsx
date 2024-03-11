@@ -14,7 +14,7 @@ const S = {
     padding: 10px;
     border-radius: 4px;
     background-color: ${({ theme }) => theme.colors.gray100};
-    color: ${({ theme }) => theme.colors.while};
+    color: ${({ theme }) => theme.colors.white};
     border: none;
     outline: none;
   `,

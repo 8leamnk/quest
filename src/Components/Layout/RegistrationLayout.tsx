@@ -19,7 +19,8 @@ const S = {
     padding: 16px;
     border-radius: 4px;
     box-sizing: border-box;
-    background-color: ${({ theme }) => theme.colors.while};
+    background-color: ${({ theme }) => theme.colors.white};
+    box-shadow: 3px 6px 9px 0 rgba(0, 0, 0, 0.16);
   `,
 };
 

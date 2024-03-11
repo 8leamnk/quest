@@ -18,6 +18,7 @@ const S = {
   `,
   Submit: styled(Button)`
     flex: none;
+    cursor: pointer;
   `,
 };
 
