@@ -7,7 +7,7 @@ import {
   changeEvent,
   buttonEvent,
 } from '../../constants/types';
-import LABELS from '../../constants/values';
+import { LABELS } from '../../constants/values';
 
 interface Options {
   inputs: StringHashTable;
