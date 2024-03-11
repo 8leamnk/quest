@@ -13,7 +13,7 @@ const S = {
     height: 40px;
     padding: 10px;
     border-radius: 4px;
-    background-color: ${({ theme }) => theme.colors.gray100};
+    background-color: ${({ theme }) => theme.colors.secondary};
     color: ${({ theme }) => theme.colors.white};
     border: none;
     outline: none;

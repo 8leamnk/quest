@@ -10,8 +10,8 @@ const S = {
     border-radius: 4px;
     font-family: 'NotoSansKR', sans-serif;
     background-color: ${({ theme }) => theme.colors.white};
+    border: ${({ theme }) => `1px solid ${theme.colors.secondary}`};
     user-select: text;
-    border: none;
     outline: none;
     box-sizing: border-box;
 
