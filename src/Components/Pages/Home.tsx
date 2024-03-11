@@ -1,5 +1,5 @@
 import React from 'react';
-import QuestRegistration from '../Organisms/QuestRegistration';
+import QuestRegistration from '../Templates/QuestRegistration';
 
 function Home() {
   return (

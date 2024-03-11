@@ -32,6 +32,20 @@ const GlobalStyle = createGlobalStyle`
   a {
     text-decoration: none;
   }
+
+  * {
+    &::-webkit-scrollbar {
+      width: 8px;
+      border-radius: 4px;
+      border: ${({ theme }) => `1px solid ${theme.colors.secondary}`};
+      box-sizing: border-box;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 4px;
+      background-color: ${({ theme }) => theme.colors.secondary};
+    }
+  }
 `;
 
 export default GlobalStyle;

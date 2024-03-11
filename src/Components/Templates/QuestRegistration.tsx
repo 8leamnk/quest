@@ -1,8 +1,8 @@
 // view
 import RegistrationLayout from '../Layout/RegistrationLayout';
-import Registration from '../Molecules/Registration';
+import Registration from '../Organisms/Registration';
 import ErrorMessage from '../Atoms/ErrorMessage';
-import RegisteredData from '../Atoms/RegisteredData';
+import RegisteredData from '../Organisms/RegisteredData';
 
 // model
 import useInputs from '../../hooks/useInputs';
@@ -38,13 +38,13 @@ function QuestRegistration() {
 
   return (
     <RegistrationLayout>
+      <ErrorMessage errorMsg={errorMsg} />
       <Registration
         inputs={inputs}
         buttonText="등록"
         onChange={onChange}
         onSubmit={onSubmit}
       />
-      <ErrorMessage errorMsg={errorMsg} />
       <RegisteredData registeredData={registeredData} />
     </RegistrationLayout>
   );
