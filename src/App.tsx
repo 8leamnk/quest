@@ -3,6 +3,7 @@ import Home from './Components/Pages/Home';
 import QuestStart from './Components/Pages/QuestStart';
 import NotFound from './Components/Pages/NotFound';
 import Theme from './styles/Theme';
+import './styles/font-face.css';
 
 function App() {
   const router = createBrowserRouter([

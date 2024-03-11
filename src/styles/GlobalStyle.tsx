@@ -9,6 +9,8 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     background-color: ${({ theme }) => theme.colors.blue001};
     font-size: ${({ theme }) => `${theme.fontSize.base}px`};
+    font-family: 'NotoSansKR', sans-serif;
+    font-weight: normal;
     font-stretch: normal;
     font-style: normal;
     color: ${({ theme }) => theme.colors.gray100};
