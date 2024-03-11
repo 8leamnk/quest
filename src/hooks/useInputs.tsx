@@ -10,7 +10,7 @@ function useInputs<T>(initialInputs: T) {
   };
 
   const onReset = (): void => {
-    setInputs((curState) => ({ ...curState, initialInputs }));
+    setInputs((curState) => ({ ...curState, ...initialInputs }));
   };
 
   return { inputs, onChange, onReset };
