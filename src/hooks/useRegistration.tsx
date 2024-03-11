@@ -1,10 +1,10 @@
 import { useCallback, useState } from 'react';
-import { Quest } from '../constants/types';
+import { QuestType } from '../constants/types';
 
 function useRegistration() {
-  const [registeredData, setRegisteredData] = useState<Quest[]>([]);
+  const [registeredData, setRegisteredData] = useState<QuestType[]>([]);
 
-  const registerQuest = useCallback((element: Quest): void => {
+  const registerQuest = useCallback((element: QuestType): void => {
     setRegisteredData((curState) => curState.concat(element));
   }, []);
 

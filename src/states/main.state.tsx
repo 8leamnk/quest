@@ -1,7 +1,7 @@
 import { atom } from 'recoil';
-import { Quest } from '../constants/types';
+import { QuestType } from '../constants/types';
 
-export const questState = atom<Quest[]>({
+export const questState = atom<QuestType[]>({
   key: 'questState',
   default: [],
 });

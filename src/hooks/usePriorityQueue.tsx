@@ -1,14 +1,14 @@
 import { useCallback } from 'react';
 import { useRecoilState } from 'recoil';
-import { Quest } from '../constants/types';
+import { QuestType } from '../constants/types';
 import { questState } from '../states/main.state';
 
 const START_INDEX = 0;
 
 function usePriorityQueue() {
-  const [quests, setQuests] = useRecoilState<Quest[]>(questState);
+  const [quests, setQuests] = useRecoilState<QuestType[]>(questState);
 
-  const bubbleUp = useCallback((queue: Quest[]): Quest[] => {
+  const bubbleUp = useCallback((queue: QuestType[]): QuestType[] => {
     const newQueue = [...queue];
     let currentIndex = newQueue.length - 1;
     const element = newQueue[currentIndex];
@@ -27,7 +27,7 @@ function usePriorityQueue() {
     return newQueue;
   }, []);
 
-  const sinkDown = useCallback((queue: Quest[]): Quest[] => {
+  const sinkDown = useCallback((queue: QuestType[]): QuestType[] => {
     const newQueue = [...queue];
     let currentIndex = START_INDEX;
     const element = newQueue[currentIndex];
@@ -37,8 +37,8 @@ function usePriorityQueue() {
     while (true) {
       const leftChildIdx: number = 2 * currentIndex + 1;
       const rightChildIdx: number = 2 * currentIndex + 2;
-      let leftChild: Quest | undefined;
-      let rightChild: Quest | undefined;
+      let leftChild: QuestType | undefined;
+      let rightChild: QuestType | undefined;
       let swap: number | null = null;
 
       if (leftChildIdx < length) {
@@ -71,7 +71,7 @@ function usePriorityQueue() {
   }, []);
 
   const enqueue = useCallback(
-    (element: Quest): boolean => {
+    (element: QuestType): boolean => {
       const queue = [...quests];
       queue.push(element);
       const newQueue = bubbleUp(queue);
@@ -82,7 +82,7 @@ function usePriorityQueue() {
     [quests],
   );
 
-  const dequeue = useCallback((): Quest => {
+  const dequeue = useCallback((): QuestType => {
     let newQueue = [...quests];
     const quest = newQueue[START_INDEX];
     const end = newQueue.pop();

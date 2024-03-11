@@ -10,7 +10,7 @@ export type buttonEvent =
   | React.FormEvent<HTMLFormElement>;
 export type changeEvent = React.ChangeEvent<HTMLInputElement>;
 
-export interface Quest {
+export interface QuestType {
   title: string;
   content: string;
   priority: number;
