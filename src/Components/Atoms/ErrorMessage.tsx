@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const S = {
   ErrorMessage: styled.p`
-    color: ${({ theme }) => theme.colors.tertiary};
+    color: ${({ theme }) => theme.colors.quaternary};
   `,
 };
 

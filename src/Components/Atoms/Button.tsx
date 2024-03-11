@@ -4,12 +4,12 @@ import { buttonEvent } from '../../constants/types';
 
 interface ButtonOptions {
   children: string;
-  onClick: (e: buttonEvent) => void;
+  onClick?: (e: buttonEvent) => void;
 }
 
 const S = {
   Button: styled.button`
-    width: 100px;
+    min-width: 100px;
     height: 40px;
     padding: 10px;
     border-radius: 4px;

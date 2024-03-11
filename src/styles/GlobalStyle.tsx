@@ -13,7 +13,7 @@ const GlobalStyle = createGlobalStyle`
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
-    color: ${({ theme }) => theme.colors.gray100};
+    color: ${({ theme }) => theme.colors.gray050};
     line-height: normal;
     box-sizing: border-box;
     user-select: none;
