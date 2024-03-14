@@ -1,5 +1,5 @@
 // view
-import RegistrationLayout from '../Layout/RegistrationLayout';
+import MainSectionLayout from '../Layout/MainSectionLayout';
 import Registration from '../Organisms/Registration';
 import ErrorMessage from '../Atoms/ErrorMessage';
 import RegisteredData from '../Organisms/RegisteredData';
@@ -37,7 +37,7 @@ function QuestRegistration() {
   };
 
   return (
-    <RegistrationLayout>
+    <MainSectionLayout>
       <ErrorMessage errorMsg={errorMsg} />
       <Registration
         inputs={inputs}
@@ -46,7 +46,7 @@ function QuestRegistration() {
         onSubmit={onSubmit}
       />
       <RegisteredData registeredData={registeredData} />
-    </RegistrationLayout>
+    </MainSectionLayout>
   );
 }
 

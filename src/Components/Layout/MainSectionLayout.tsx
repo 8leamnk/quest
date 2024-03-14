@@ -24,7 +24,7 @@ const S = {
   `,
 };
 
-function RegistrationLayout({ children }: { children: React.ReactNode }) {
+function MainSectionLayout({ children }: { children: React.ReactNode }) {
   return (
     <S.Section>
       <S.Inner>{children}</S.Inner>
@@ -32,4 +32,4 @@ function RegistrationLayout({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default RegistrationLayout;
+export default MainSectionLayout;
