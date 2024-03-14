@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 
 const S = {
@@ -11,4 +12,4 @@ function Title({ children }: { children: string }) {
   return <S.Title>{children}</S.Title>;
 }
 
-export default Title;
+export default React.memo(Title);

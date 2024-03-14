@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 
 const S = {
@@ -11,4 +12,4 @@ function Strong({ isBold, children }: { isBold?: boolean; children: string }) {
   return <S.Strong $isBold={isBold}>{children}</S.Strong>;
 }
 
-export default Strong;
+export default React.memo(Strong);

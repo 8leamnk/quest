@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 
 interface LabelOptions {
@@ -16,4 +17,4 @@ function Label({ children, ...rest }: LabelOptions) {
   return <S.Label {...rest}>{children}</S.Label>;
 }
 
-export default Label;
+export default React.memo(Label);

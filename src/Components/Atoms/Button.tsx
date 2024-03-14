@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import React from 'react';
 import styled from 'styled-components';
 import { buttonEvent } from '../../constants/types';
 
@@ -17,6 +18,7 @@ const S = {
     color: ${({ theme }) => theme.colors.white};
     border: none;
     outline: none;
+    cursor: pointer;
   `,
 };
 
@@ -28,4 +30,4 @@ function Button({ children, onClick, ...rest }: ButtonOptions) {
   );
 }
 
-export default Button;
+export default React.memo(Button);

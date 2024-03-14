@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 
 const S = {
@@ -16,4 +17,4 @@ function Mark({ children }: { children: string }) {
   return <S.Mark>{children}</S.Mark>;
 }
 
-export default Mark;
+export default React.memo(Mark);

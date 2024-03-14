@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import React from 'react';
 import styled, { css } from 'styled-components';
 import { InputOptions } from '../../constants/types';
 
@@ -36,4 +37,4 @@ function Input(inputOptions: InputOptions) {
   return <S.Input {...inputOptions} />;
 }
 
-export default Input;
+export default React.memo(Input);

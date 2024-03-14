@@ -1,3 +1,4 @@
+import React from 'react';
 import styled, { css } from 'styled-components';
 import Strong from './Strong';
 import { QuestType } from '../../constants/types';
@@ -50,4 +51,4 @@ function Quest({ data, isLargeFont = false, ...rest }: QuestOptions) {
   );
 }
 
-export default Quest;
+export default React.memo(Quest);

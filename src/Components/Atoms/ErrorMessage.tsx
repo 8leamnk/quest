@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 
 const S = {
@@ -14,4 +15,4 @@ function ErrorMessage({ errorMsg }: { errorMsg: string }) {
   return <></>;
 }
 
-export default ErrorMessage;
+export default React.memo(ErrorMessage);
