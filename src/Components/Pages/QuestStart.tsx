@@ -1,18 +1,7 @@
-import { useLayoutEffect, useState } from 'react';
-import usePriorityQueue from '../../hooks/usePriorityQueue';
-import { QuestType } from '../../constants/types';
+import QuestCompleted from '../Templates/QuestProgress';
 
 function QuestStart() {
-  const [currentQuest, setCurrentQuest] = useState<QuestType | object>({});
-  const { dequeue } = usePriorityQueue();
-
-  useLayoutEffect(() => {
-    const quest = dequeue();
-
-    setCurrentQuest(quest);
-  }, []);
-
-  return <>Start page!</>;
+  return <QuestCompleted />;
 }
 
 export default QuestStart;

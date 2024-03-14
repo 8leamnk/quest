@@ -1,0 +1,36 @@
+import { useLayoutEffect } from 'react';
+
+// view
+import MainSectionLayout from '../Layout/MainSectionLayout';
+import Notice from '../Molecules/Notice';
+
+// model
+import useCurrentQuest from '../../hooks/useCurrentQuest';
+import usePriorityQueue from '../../hooks/usePriorityQueue';
+
+function QuestProgress() {
+  const { currentQuest, isEntryEmpty, handleCurrentQuest } = useCurrentQuest();
+  const { dequeue } = usePriorityQueue();
+
+  const onComplete = () => {
+    const nextQuest = dequeue();
+
+    handleCurrentQuest(nextQuest);
+  };
+
+  useLayoutEffect(() => {
+    onComplete();
+  }, []);
+
+  if (isEntryEmpty) {
+    return (
+      <MainSectionLayout>
+        <Notice pathname="/" linkText="메인 페이지로">
+          아직 아무 것도 등록되지 않았습니다.
+        </Notice>
+      </MainSectionLayout>
+    );
+  }
+}
+
+export default QuestProgress;
