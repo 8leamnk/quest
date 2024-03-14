@@ -31,6 +31,16 @@ function QuestProgress() {
       </MainSectionLayout>
     );
   }
+
+  if (!currentQuest) {
+    return (
+      <MainSectionLayout>
+        <Notice pathname="/" linkText="메인 페이지로">
+          퀘스트를 모두 완료했습니다.
+        </Notice>
+      </MainSectionLayout>
+    );
+  }
 }
 
 export default QuestProgress;
