@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import Quest from '../Atoms/Quest';
+import Empty from './Empty';
 import { QuestType } from '../../constants/types';
-import Empty from '../Atoms/Empty';
 
 const wrapper = css`
   display: flex;
@@ -16,7 +16,7 @@ const S = {
     gap: 16px;
   `,
 
-  Empty: styled.div`
+  Empty: styled(Empty)`
     ${wrapper};
     height: calc(100% - 56px);
     justify-content: center;
@@ -35,11 +35,7 @@ function Quests({ quests }: { quests: QuestType[] }) {
     );
   }
 
-  return (
-    <S.Empty>
-      <Empty>아직 아무 것도 등록되지 않았습니다.</Empty>
-    </S.Empty>
-  );
+  return <S.Empty>아직 아무 것도 등록되지 않았습니다.</S.Empty>;
 }
 
 export default Quests;
