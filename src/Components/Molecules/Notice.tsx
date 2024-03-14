@@ -4,28 +4,28 @@ import Content from '../Atoms/Content';
 import ButtonsLayout from '../Layout/ButtonsRightLayout';
 import Button from '../Atoms/Button';
 
-interface EmptyOptions {
+interface NoticeOptions {
   children: string;
   pathname?: string;
   linkText?: string;
 }
 
 const S = {
-  Empty: styled.div`
+  Notice: styled.div`
     display: flex;
     flex-direction: column;
     gap: 48px;
   `,
 };
 
-function Empty({
+function Notice({
   children,
   pathname = '',
   linkText = '',
   ...rest
-}: EmptyOptions) {
+}: NoticeOptions) {
   return (
-    <S.Empty {...rest}>
+    <S.Notice {...rest}>
       <Content>{children}</Content>
 
       {pathname && (
@@ -35,8 +35,8 @@ function Empty({
           </Link>
         </ButtonsLayout>
       )}
-    </S.Empty>
+    </S.Notice>
   );
 }
 
-export default Empty;
+export default Notice;

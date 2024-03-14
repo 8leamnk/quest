@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import Quest from '../Atoms/Quest';
-import Empty from './Empty';
+import Notice from './Notice';
 import { QuestType } from '../../constants/types';
 
 const wrapper = css`
@@ -16,7 +16,7 @@ const S = {
     gap: 16px;
   `,
 
-  Empty: styled(Empty)`
+  Empty: styled(Notice)`
     ${wrapper};
     height: calc(100% - 56px);
     justify-content: center;
