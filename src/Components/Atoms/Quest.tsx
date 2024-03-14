@@ -33,7 +33,11 @@ const S = {
   `,
 };
 
-function Quest({ data, isLargeFont, ...rest }: QuestOptions) {
+function Quest({ data, isLargeFont = false, ...rest }: QuestOptions) {
+  if (!data) {
+    return <></>;
+  }
+
   return (
     <S.Item $isLargeFont={isLargeFont} {...rest}>
       {Object.entries(data).map(([key, value]) => (
