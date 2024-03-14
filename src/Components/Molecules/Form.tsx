@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import styled from 'styled-components';
+import ButtonsLayout from '../Layout/ButtonsRightLayout';
 import Button from '../Atoms/Button';
 import { buttonEvent } from '../../constants/types';
 
@@ -16,13 +17,6 @@ const S = {
     flex-direction: column;
     gap: 16px;
   `,
-  Decision: styled.div`
-    display: flex;
-    justify-content: flex-end;
-  `,
-  Submit: styled(Button)`
-    cursor: pointer;
-  `,
 };
 
 function Form({ children, buttonText, onSubmit }: FormOptions) {
@@ -30,9 +24,9 @@ function Form({ children, buttonText, onSubmit }: FormOptions) {
     <S.Form onSubmit={onSubmit}>
       {children}
 
-      <S.Decision>
-        <S.Submit onClick={onSubmit}>{buttonText}</S.Submit>
-      </S.Decision>
+      <ButtonsLayout>
+        <Button onClick={onSubmit}>{buttonText}</Button>
+      </ButtonsLayout>
     </S.Form>
   );
 }
