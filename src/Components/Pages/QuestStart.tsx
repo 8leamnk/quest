@@ -1,7 +1,7 @@
-import QuestCompleted from '../Templates/QuestProgress';
+import QuestProgress from '../Templates/QuestProgress';
 
 function QuestStart() {
-  return <QuestCompleted />;
+  return <QuestProgress />;
 }
 
 export default QuestStart;
