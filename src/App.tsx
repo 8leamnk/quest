@@ -1,6 +1,11 @@
 import React, { Suspense } from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+
+// components
 import Home from './Components/Pages/Home';
+import Loading from './Components/Atoms/Loading';
+
+// styles
 import Theme from './styles/Theme';
 import './styles/common/font-face.css';
 
@@ -13,7 +18,7 @@ function App() {
       path: '/',
       element: <Home />,
       errorElement: (
-        <Suspense fallback={<>loading...</>}>
+        <Suspense fallback={<Loading />}>
           <NotFound />
         </Suspense>
       ),
@@ -21,7 +26,7 @@ function App() {
     {
       path: 'quest-start',
       element: (
-        <Suspense fallback={<>loading...</>}>
+        <Suspense fallback={<Loading />}>
           <QuestStart />
         </Suspense>
       ),

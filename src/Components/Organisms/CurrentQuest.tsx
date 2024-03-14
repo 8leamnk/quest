@@ -1,6 +1,7 @@
 import React, { Suspense, useMemo } from 'react';
 import Quest from '../Atoms/Quest';
 import Button from '../Atoms/Button';
+import Loading from '../Atoms/Loading';
 import { QuestType } from '../../constants/types';
 
 interface CurrentQuestOptions {
@@ -23,7 +24,7 @@ function CurrentQuest({ currentQuest, onComplete }: CurrentQuestOptions) {
   );
 
   return (
-    <Suspense fallback={<>loading...</>}>
+    <Suspense fallback={<Loading />}>
       <ListBoxAndButton listtNode={listtNode} buttonNode={buttonNode} />
     </Suspense>
   );
