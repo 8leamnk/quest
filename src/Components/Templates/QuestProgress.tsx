@@ -2,6 +2,7 @@ import { useLayoutEffect } from 'react';
 
 // view
 import MainSectionLayout from '../Layout/MainSectionLayout';
+import CurrentQuest from '../Organisms/CurrentQuest';
 import Notice from '../Molecules/Notice';
 
 // model
@@ -41,6 +42,12 @@ function QuestProgress() {
       </MainSectionLayout>
     );
   }
+
+  return (
+    <MainSectionLayout>
+      <CurrentQuest currentQuest={currentQuest} onComplete={onComplete} />
+    </MainSectionLayout>
+  );
 }
 
 export default QuestProgress;
