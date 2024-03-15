@@ -9,9 +9,15 @@ import Notice from '../Molecules/Notice';
 import useCurrentQuest from '../../hooks/useCurrentQuest';
 import usePriorityQueue from '../../hooks/usePriorityQueue';
 
+// states
+import { questState } from '../../states/main.state';
+
+// types
+import { QuestType } from '../../constants/types';
+
 function QuestProgress() {
   const { currentQuest, isEntryEmpty, handleCurrentQuest } = useCurrentQuest();
-  const { dequeue } = usePriorityQueue();
+  const { dequeue } = usePriorityQueue<QuestType>(questState);
 
   const onComplete = () => {
     const nextQuest = dequeue();
