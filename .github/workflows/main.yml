@@ -1,0 +1,38 @@
+name: test
+
+on:
+  push:
+    branches: ['main', 'dev']
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code. # 레포지토리 체크아웃
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Cache node modules # npm 캐시
+        id: npm-cache
+        uses: actions/cache@v4
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+            ${{ runner.os }}
+
+      - name: Install
+        if: ${{ steps.npm-cache.outputs.cache-hit != 'true' }}
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint # eslint 실행
+
+      - name: Test
+        run: npm run test # test 실행
