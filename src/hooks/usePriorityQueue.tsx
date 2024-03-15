@@ -1,14 +1,16 @@
 import { useCallback } from 'react';
-import { useRecoilState } from 'recoil';
-import { QuestType } from '../constants/types';
-import { questState } from '../states/main.state';
+import { RecoilState, useRecoilState } from 'recoil';
+
+interface QueueType {
+  priority: number;
+}
 
 const START_INDEX = 0;
 
-function usePriorityQueue() {
-  const [quests, setQuests] = useRecoilState<QuestType[]>(questState);
+function usePriorityQueue<T extends QueueType>(recoilState: RecoilState<T[]>) {
+  const [currentQueue, setCurrentQueue] = useRecoilState<T[]>(recoilState);
 
-  const bubbleUp = useCallback((queue: QuestType[]): QuestType[] => {
+  const bubbleUp = useCallback((queue: Array<T>): T[] => {
     const newQueue = [...queue];
     let currentIndex = newQueue.length - 1;
     const element = newQueue[currentIndex];
@@ -27,7 +29,7 @@ function usePriorityQueue() {
     return newQueue;
   }, []);
 
-  const sinkDown = useCallback((queue: QuestType[]): QuestType[] => {
+  const sinkDown = useCallback((queue: T[]): T[] => {
     const newQueue = [...queue];
     let currentIndex = START_INDEX;
     const element = newQueue[currentIndex];
@@ -37,8 +39,8 @@ function usePriorityQueue() {
     while (true) {
       const leftChildIdx: number = 2 * currentIndex + 1;
       const rightChildIdx: number = 2 * currentIndex + 2;
-      let leftChild: QuestType | undefined;
-      let rightChild: QuestType | undefined;
+      let leftChild: T | undefined;
+      let rightChild: T | undefined;
       let swap: number | null = null;
 
       if (leftChildIdx < length) {
@@ -71,19 +73,19 @@ function usePriorityQueue() {
   }, []);
 
   const enqueue = useCallback(
-    (element: QuestType): boolean => {
-      const queue = [...quests];
+    (element: T): boolean => {
+      const queue = [...currentQueue];
       queue.push(element);
       const newQueue = bubbleUp(queue);
-      setQuests(newQueue);
+      setCurrentQueue(newQueue);
 
       return true;
     },
-    [quests],
+    [currentQueue],
   );
 
-  const dequeue = useCallback((): QuestType => {
-    let newQueue = [...quests];
+  const dequeue = useCallback((): T => {
+    let newQueue = [...currentQueue];
     const quest = newQueue[START_INDEX];
     const end = newQueue.pop();
 
@@ -92,10 +94,10 @@ function usePriorityQueue() {
       newQueue = sinkDown(newQueue);
     }
 
-    setQuests(newQueue);
+    setCurrentQueue(newQueue);
 
     return quest;
-  }, [quests]);
+  }, [currentQueue]);
 
   return { enqueue, dequeue };
 }

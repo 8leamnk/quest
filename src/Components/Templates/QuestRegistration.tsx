@@ -9,7 +9,12 @@ import useInputs from '../../hooks/useInputs';
 import useValidation from '../../hooks/useQuestValidation';
 import useRegistration from '../../hooks/useRegistration';
 import usePriorityQueue from '../../hooks/usePriorityQueue';
-import { QuestInputs, buttonEvent } from '../../constants/types';
+
+// states
+import { questState } from '../../states/main.state';
+
+// types
+import { QuestInputs, QuestType, buttonEvent } from '../../constants/types';
 
 const INITIAL_INPUTS: QuestInputs = {
   title: '',
@@ -21,7 +26,7 @@ function QuestRegistration() {
   const { inputs, onChange, onReset } = useInputs<QuestInputs>(INITIAL_INPUTS);
   const { errorMsg, validate } = useValidation();
   const { registeredData, registerQuest } = useRegistration();
-  const { enqueue } = usePriorityQueue();
+  const { enqueue } = usePriorityQueue<QuestType>(questState);
 
   const onSubmit = (e: buttonEvent): void => {
     e.preventDefault();
