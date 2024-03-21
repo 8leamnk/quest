@@ -1,11 +1,12 @@
 import { fireEvent, render } from '@testing-library/react';
-import { RecoilRoot } from 'recoil';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import Theme from '../../../styles/Theme';
 import Home from '../Home';
 import { QuestInputs } from '../../../constants/types';
 
 describe('메인 페이지 테스트', () => {
+  const queryClient = new QueryClient();
   const TITLE_PLACEHOLDER = '퀘스트 제목을(를) 입력하세요.';
   const CONTENT_PLACEHOLDER = '내용을(를) 입력하세요.';
   const PRIORITY_PLACEHOLDER = '중요도을(를) 입력하세요.';
@@ -17,7 +18,7 @@ describe('메인 페이지 테스트', () => {
   test('요소의 존재 여부 테스트', () => {
     // when
     const { getByText, getByPlaceholderText } = render(
-      <RecoilRoot>
+      <QueryClientProvider client={queryClient}>
         <Theme>
           <MemoryRouter initialEntries={['/']} basename="/">
             <Routes>
@@ -25,7 +26,7 @@ describe('메인 페이지 테스트', () => {
             </Routes>
           </MemoryRouter>
         </Theme>
-      </RecoilRoot>,
+      </QueryClientProvider>,
     );
 
     // then
@@ -45,7 +46,7 @@ describe('메인 페이지 테스트', () => {
       priority: '3',
     };
     const { getByText, getByPlaceholderText } = render(
-      <RecoilRoot>
+      <QueryClientProvider client={queryClient}>
         <Theme>
           <MemoryRouter initialEntries={['/']} basename="/">
             <Routes>
@@ -53,7 +54,7 @@ describe('메인 페이지 테스트', () => {
             </Routes>
           </MemoryRouter>
         </Theme>
-      </RecoilRoot>,
+      </QueryClientProvider>,
     );
     const inputTitle = getByPlaceholderText(TITLE_PLACEHOLDER);
     const inputContent = getByPlaceholderText(CONTENT_PLACEHOLDER);
@@ -84,7 +85,7 @@ describe('메인 페이지 테스트', () => {
 
     // when
     const { getByText, getByPlaceholderText } = render(
-      <RecoilRoot>
+      <QueryClientProvider client={queryClient}>
         <Theme>
           <MemoryRouter initialEntries={['/']} basename="/">
             <Routes>
@@ -92,7 +93,7 @@ describe('메인 페이지 테스트', () => {
             </Routes>
           </MemoryRouter>
         </Theme>
-      </RecoilRoot>,
+      </QueryClientProvider>,
     );
     const inputTitle = getByPlaceholderText(TITLE_PLACEHOLDER);
     const inputContent = getByPlaceholderText(CONTENT_PLACEHOLDER);

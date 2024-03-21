@@ -1,26 +1,30 @@
 import { act, renderHook } from '@testing-library/react';
-import { RecoilRoot, atom } from 'recoil';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import usePriorityQueue from '../usePriorityQueue';
+import { questKey } from '../../constants/queryKey';
 
 interface QueueType {
   value: string;
   priority: number;
 }
 
-const queueState = atom<QueueType[]>({
-  key: 'queueState',
-  default: [],
-});
+interface QueueType {
+  value: string;
+  priority: number;
+}
 
 describe('우선 순위 큐 테스트', () => {
+  const queryClient = new QueryClient();
+
   test('아무것도 없는 상태에서 제거를 하면 undefined가 반환된다.', () => {
     // when
-    const { result } = renderHook(
-      () => usePriorityQueue<QueueType>(queueState),
-      {
-        wrapper: ({ children }) => <RecoilRoot>{children}</RecoilRoot>,
-      },
-    );
+    const { result } = renderHook(() => usePriorityQueue<QueueType>(questKey), {
+      wrapper: ({ children }) => (
+        <QueryClientProvider client={queryClient}>
+          {children}
+        </QueryClientProvider>
+      ),
+    });
 
     // then
     act(() => {
@@ -49,9 +53,13 @@ describe('우선 순위 큐 테스트', () => {
 
     // when
     const { result, rerender } = renderHook(
-      () => usePriorityQueue<QueueType>(queueState),
+      () => usePriorityQueue<QueueType>(questKey),
       {
-        wrapper: ({ children }) => <RecoilRoot>{children}</RecoilRoot>,
+        wrapper: ({ children }) => (
+          <QueryClientProvider client={queryClient}>
+            {children}
+          </QueryClientProvider>
+        ),
       },
     );
 

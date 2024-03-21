@@ -7,7 +7,6 @@ import Loading from './Components/Atoms/Loading';
 
 // styles
 import Theme from './styles/Theme';
-import './styles/common/font-face.css';
 
 const QuestStart = React.lazy(() => import('./Components/Pages/QuestStart'));
 const NotFound = React.lazy(() => import('./Components/Pages/NotFound'));

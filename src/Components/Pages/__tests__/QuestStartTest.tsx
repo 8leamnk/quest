@@ -1,13 +1,19 @@
 import { fireEvent, render, waitFor } from '@testing-library/react';
-import { RecoilRoot } from 'recoil';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
+
+// components
 import Theme from '../../../styles/Theme';
 import Home from '../Home';
 import QuestStart from '../QuestStart';
+
+// constants
 import { QuestInputs } from '../../../constants/types';
+import { questKey } from '../../../constants/queryKey';
 
 describe('퀘스트 시작 페이지 테스트', () => {
   // given
+  const queryClient = new QueryClient();
   const TITLE_PLACEHOLDER = '퀘스트 제목을(를) 입력하세요.';
   const CONTENT_PLACEHOLDER = '내용을(를) 입력하세요.';
   const PRIORITY_PLACEHOLDER = '중요도을(를) 입력하세요.';
@@ -18,10 +24,14 @@ describe('퀘스트 시작 페이지 테스트', () => {
   const COMPLIETION_BUTTON_TEXT = '완료';
   const COMPLIETION = '퀘스트를 모두 완료했습니다.';
 
+  afterEach(() => {
+    queryClient.setQueryData(questKey, []);
+  });
+
   test('퀘스트를 등록하지 않은 채로 페이지에 진입하면 안내문구가 나온다.', () => {
     // when
     const { getByText } = render(
-      <RecoilRoot>
+      <QueryClientProvider client={queryClient}>
         <Theme>
           <MemoryRouter initialEntries={['/quest-start']} basename="/">
             <Routes>
@@ -29,7 +39,7 @@ describe('퀘스트 시작 페이지 테스트', () => {
             </Routes>
           </MemoryRouter>
         </Theme>
-      </RecoilRoot>,
+      </QueryClientProvider>,
     );
 
     // then
@@ -50,7 +60,7 @@ describe('퀘스트 시작 페이지 테스트', () => {
 
     // when
     const { getByText, getByPlaceholderText } = render(
-      <RecoilRoot>
+      <QueryClientProvider client={queryClient}>
         <Theme>
           <MemoryRouter initialEntries={['/']} basename="/">
             <Routes>
@@ -59,19 +69,26 @@ describe('퀘스트 시작 페이지 테스트', () => {
             </Routes>
           </MemoryRouter>
         </Theme>
-      </RecoilRoot>,
+      </QueryClientProvider>,
     );
     const inputTitle = getByPlaceholderText(TITLE_PLACEHOLDER);
     const inputContent = getByPlaceholderText(CONTENT_PLACEHOLDER);
     const inputPriority = getByPlaceholderText(PRIORITY_PLACEHOLDER);
     const submitButton = getByText(SUBMIT_BUTTON_TEXT);
 
-    INPUTS.forEach((input: QuestInputs) => {
-      fireEvent.change(inputTitle, { target: { value: input.title } });
-      fireEvent.change(inputContent, { target: { value: input.content } });
-      fireEvent.change(inputPriority, { target: { value: input.priority } });
-      fireEvent.click(submitButton);
-    });
+    await waitFor(
+      () => {
+        INPUTS.forEach((input: QuestInputs) => {
+          fireEvent.change(inputTitle, { target: { value: input.title } });
+          fireEvent.change(inputContent, { target: { value: input.content } });
+          fireEvent.change(inputPriority, {
+            target: { value: input.priority },
+          });
+          fireEvent.click(submitButton);
+        });
+      },
+      { timeout: 100 },
+    );
 
     fireEvent.click(getByText(QUEST_START_BUTTON_TEXT));
 
@@ -82,7 +99,7 @@ describe('퀘스트 시작 페이지 테스트', () => {
         expect(getByText(OUTPUT.content)).toBeInTheDocument();
         expect(getByText(OUTPUT.priority)).toBeInTheDocument();
       },
-      { timeout: 1000 },
+      { timeout: 100 },
     );
   });
 
@@ -105,7 +122,7 @@ describe('퀘스트 시작 페이지 테스트', () => {
 
     // when
     const { getByText, getByPlaceholderText } = render(
-      <RecoilRoot>
+      <QueryClientProvider client={queryClient}>
         <Theme>
           <MemoryRouter initialEntries={['/']} basename="/">
             <Routes>
@@ -114,23 +131,29 @@ describe('퀘스트 시작 페이지 테스트', () => {
             </Routes>
           </MemoryRouter>
         </Theme>
-      </RecoilRoot>,
+      </QueryClientProvider>,
     );
     const inputTitle = getByPlaceholderText(TITLE_PLACEHOLDER);
     const inputContent = getByPlaceholderText(CONTENT_PLACEHOLDER);
     const inputPriority = getByPlaceholderText(PRIORITY_PLACEHOLDER);
     const submitButton = getByText(SUBMIT_BUTTON_TEXT);
 
-    INPUTS.forEach((input: QuestInputs) => {
-      fireEvent.change(inputTitle, { target: { value: input.title } });
-      fireEvent.change(inputContent, { target: { value: input.content } });
-      fireEvent.change(inputPriority, { target: { value: input.priority } });
-      fireEvent.click(submitButton);
-    });
+    await waitFor(
+      () => {
+        INPUTS.forEach((input: QuestInputs) => {
+          fireEvent.change(inputTitle, { target: { value: input.title } });
+          fireEvent.change(inputContent, { target: { value: input.content } });
+          fireEvent.change(inputPriority, {
+            target: { value: input.priority },
+          });
+          fireEvent.click(submitButton);
+        });
+      },
+      { timeout: 100 },
+    );
 
     fireEvent.click(getByText(QUEST_START_BUTTON_TEXT));
 
-    // then
     await waitFor(
       () => {
         OUTPUTS.forEach((output) => {
@@ -141,7 +164,7 @@ describe('퀘스트 시작 페이지 테스트', () => {
           fireEvent.click(getByText(COMPLIETION_BUTTON_TEXT));
         });
       },
-      { timeout: 1000 },
+      { timeout: 100 },
     );
 
     expect(getByText(COMPLIETION)).toBeInTheDocument();
