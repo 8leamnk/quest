@@ -17,21 +17,31 @@
   "settings": {
     "import/resolver": {
       "node": {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+        "extensions": [".ts", ".tsx", ".js", ".jsx"]
       }
     },
     "react": {
       "version": "detect" // 사용자가 설치한 버전을 자동으로 선택
     }
   },
-  "plugins": ["import", "@typescript-eslint", "prettier", "react"],
+  "plugins": [
+    "import",
+    "@typescript-eslint",
+    "prettier",
+    "react",
+    "react-hooks"
+  ],
   "rules": {
+    "prettier/prettier": "error",
+    "curly": ["error", "all"],
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": [
       1,
-      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+      { "extensions": [".ts", ".tsx", ".js", ".jsx"] }
     ],
     "import/extensions": ["error", "never"],
-    "no-unused-vars": "warn"
+    "default-case": ["error", { "commentPattern": "^skip\\sdefault" }],
+    "no-unused-vars": "warn",
+    "react-hooks/rules-of-hooks": "error"
   }
 }

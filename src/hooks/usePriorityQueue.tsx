@@ -30,7 +30,9 @@ function usePriorityQueue<T extends QueueType>(queryKey: QueryKey) {
       const parentIndex = Math.floor((currentIndex - 1) / 2);
       const parent = newQueue[parentIndex];
 
-      if (parent.priority >= element.priority) break;
+      if (parent.priority >= element.priority) {
+        break;
+      }
 
       newQueue[currentIndex] = parent;
       newQueue[parentIndex] = element;
@@ -73,7 +75,9 @@ function usePriorityQueue<T extends QueueType>(queryKey: QueryKey) {
         }
       }
 
-      if (!swap) break;
+      if (!swap) {
+        break;
+      }
 
       newQueue[currentIndex] = newQueue[swap];
       newQueue[swap] = element;
