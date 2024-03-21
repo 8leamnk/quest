@@ -1,18 +1,24 @@
-import { useCallback, useLayoutEffect, useState } from 'react';
-import { useRecoilValue } from 'recoil';
-import { questState } from '../states/main.state';
+import { useLayoutEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+
+// constants
 import { QuestType } from '../constants/types';
+import { questKey } from '../constants/queryKey';
 
 function useCurrentQuest() {
-  const quest = useRecoilValue(questState);
+  const { data: quest } = useQuery<QuestType[]>({
+    queryKey: questKey,
+    initialData: [],
+    staleTime: Infinity,
+  });
   const [isEntryEmpty, setIsEntryEmpty] = useState<boolean>(false);
   const [currentQuest, setCurrentQuest] = useState<QuestType | undefined>(
     undefined,
   );
 
-  const handleCurrentQuest = useCallback((nextQuest: QuestType) => {
+  const handleCurrentQuest = (nextQuest: QuestType) => {
     setCurrentQuest(nextQuest);
-  }, []);
+  };
 
   useLayoutEffect(() => {
     if (quest.length === 0) {

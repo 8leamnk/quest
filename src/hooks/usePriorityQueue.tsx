@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { RecoilState, useRecoilState } from 'recoil';
+import { QueryKey, useQuery, useQueryClient } from '@tanstack/react-query';
 
 interface QueueType {
   priority: number;
@@ -7,8 +7,19 @@ interface QueueType {
 
 const START_INDEX = 0;
 
-function usePriorityQueue<T extends QueueType>(recoilState: RecoilState<T[]>) {
-  const [currentQueue, setCurrentQueue] = useRecoilState<T[]>(recoilState);
+function usePriorityQueue<T extends QueueType>(queryKey: QueryKey) {
+  const queryClient = useQueryClient();
+
+  const { data: queryData } = useQuery<T[]>({
+    queryKey,
+    initialData: [],
+    staleTime: Infinity,
+  });
+
+  const updateQueryData = (data: T[]) => {
+    queryClient.setQueryData(queryKey, data);
+    queryClient.invalidateQueries({ queryKey });
+  };
 
   const bubbleUp = useCallback((queue: Array<T>): T[] => {
     const newQueue = [...queue];
@@ -74,18 +85,18 @@ function usePriorityQueue<T extends QueueType>(recoilState: RecoilState<T[]>) {
 
   const enqueue = useCallback(
     (element: T): boolean => {
-      const queue = [...currentQueue];
+      const queue = [...queryData];
       queue.push(element);
       const newQueue = bubbleUp(queue);
-      setCurrentQueue(newQueue);
+      updateQueryData(newQueue);
 
       return true;
     },
-    [currentQueue],
+    [queryData],
   );
 
   const dequeue = useCallback((): T => {
-    let newQueue = [...currentQueue];
+    let newQueue = [...queryData];
     const quest = newQueue[START_INDEX];
     const end = newQueue.pop();
 
@@ -94,10 +105,10 @@ function usePriorityQueue<T extends QueueType>(recoilState: RecoilState<T[]>) {
       newQueue = sinkDown(newQueue);
     }
 
-    setCurrentQueue(newQueue);
+    updateQueryData(newQueue);
 
     return quest;
-  }, [currentQueue]);
+  }, [queryData]);
 
   return { enqueue, dequeue };
 }

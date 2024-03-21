@@ -3,6 +3,7 @@ import { ThemeProvider } from 'styled-components';
 import GlobalStyle from '../GlobalStyle';
 import lightTheme from './lightTheme';
 import FONT_SIZE from '../common/fontSize';
+import '../common/font-face.css';
 
 function Theme({ children }: Readonly<{ children: React.ReactNode }>) {
   const theme = useMemo(
