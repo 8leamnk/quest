@@ -8,11 +8,6 @@ interface QueueType {
   priority: number;
 }
 
-interface QueueType {
-  value: string;
-  priority: number;
-}
-
 describe('우선 순위 큐 테스트', () => {
   const queryClient = new QueryClient();
 
