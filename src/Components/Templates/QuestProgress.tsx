@@ -19,7 +19,6 @@ function QuestProgress() {
 
   const onComplete = () => {
     const nextQuest = dequeue();
-
     handleCurrentQuest(nextQuest);
   };
 
