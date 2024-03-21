@@ -34,7 +34,9 @@ function useValidation() {
         setErrorMsg('');
         return { ...inputs, priority };
       } catch (error: unknown) {
-        if (error instanceof Error) setErrorMsg(error.message);
+        if (error instanceof Error) {
+          setErrorMsg(error.message);
+        }
         return null;
       }
     },
