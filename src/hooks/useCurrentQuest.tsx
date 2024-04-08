@@ -6,7 +6,12 @@ import { QuestType } from '../constants/types';
 import { questKey } from '../constants/queryKey';
 
 function useCurrentQuest() {
-  const { data: quest } = useQuery<QuestType[]>({ queryKey: questKey });
+  const { data: quest } = useQuery<QuestType[]>({
+    queryKey: questKey,
+    initialData: [],
+    staleTime: Infinity,
+  });
+
   const [isEntryEmpty, setIsEntryEmpty] = useState<boolean>(false);
   const [currentQuest, setCurrentQuest] = useState<QuestType | undefined>(
     undefined,
@@ -17,7 +22,7 @@ function useCurrentQuest() {
   };
 
   useLayoutEffect(() => {
-    if (quest && quest.length === 0) {
+    if (quest.length === 0) {
       setIsEntryEmpty(true);
     }
   }, []);
